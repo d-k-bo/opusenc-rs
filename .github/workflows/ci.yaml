@@ -21,6 +21,8 @@ jobs:
         with:
           submodules: true
       - uses: dtolnay/rust-toolchain@stable
+      - name: Install libopusenc
+        run: sudo apt install libopusenc-dev
       - run: cargo clippy --all-features
       - run: cargo clippy --no-default-features
 
@@ -32,4 +34,6 @@ jobs:
         with:
           submodules: true
       - uses: dtolnay/rust-toolchain@stable
+      - name: Install libopusenc
+        run: sudo apt install libopusenc-dev
       - run: cargo test
