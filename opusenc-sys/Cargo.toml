@@ -1,0 +1,15 @@
+[package]
+name = "opusenc-sys"
+version = "0.1.0"
+edition = "2021"
+authors = ["d-k-bo <d-k-bo@mailbox.org>"]
+description = "Low-level bindings for libopusenc."
+repository = "https://github.com/d-k-bo/opusenc-rs"
+license = "BSD-3-Clause"
+keywords = ["opus", "vorbis", "codec", "audio", "music"]
+categories = ["external-ffi-bindings", "multimedia::audio"]
+
+[dependencies]
+
+[build-dependencies]
+bindgen = "0.66.1"

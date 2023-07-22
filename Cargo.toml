@@ -1,0 +1,22 @@
+[workspace]
+members = [".", "opusenc-sys"]
+
+[package]
+name = "opusenc"
+version = "0.1.0"
+edition = "2021"
+authors = ["d-k-bo <d-k-bo@mailbox.org>"]
+description = "High-level bindings for libopusenc."
+repository = "https://github.com/d-k-bo/opusenc-rs"
+license = "BSD-3-Clause"
+keywords = ["opus", "vorbis", "codec", "audio", "music"]
+categories = ["api-bindings", "multimedia::audio"]
+
+[features]
+default = []
+encoder-options = []
+
+[dependencies]
+cstr = "0.2.11"
+num_enum = "0.6.1"
+opusenc-sys = { version = "0.1.0", path = "opusenc-sys" }
