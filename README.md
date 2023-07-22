@@ -3,7 +3,7 @@
 [![Build Status](https://github.com/d-k-bo/opusenc-rs/workflows/CI/badge.svg)](https://github.com/d-k-bo/opusenc-rs/actions?query=workflow%3ACI)
 [![Crates.io](https://img.shields.io/crates/v/opusenc)](https://crates.io/crates/opusenc)
 [![Documentation](https://img.shields.io/docsrs/opusenc)](https://docs.rs/opusenc)
-[![License: BSD-3-Clause](https://img.shields.io/crates/l/opusenc)](LICENSE)
+[![License: BSD-3-Clause](https://img.shields.io/crates/l/opusenc)](COPYING)
 
 <!-- cargo-rdme start -->
 
@@ -51,4 +51,4 @@ Make sure to check if the methods you use match their intended behaviour.
 
 This project is licensed under the BSD-3-Clause License.
 
-See [LICENSE](LICENSE) for more information.
+See [COPYING](COPYING) for more information.
