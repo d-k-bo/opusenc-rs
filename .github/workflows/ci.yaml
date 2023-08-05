@@ -8,32 +8,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: ./.github/actions/container
         with:
-          submodules: true
-      - uses: dtolnay/rust-toolchain@stable
-      - run: cargo fmt --all -- --check
+          run: cargo fmt --all -- --check
 
   clippy:
     name: cargo clippy
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: ./.github/actions/container
         with:
-          submodules: true
-      - uses: dtolnay/rust-toolchain@stable
-      - name: Install libopusenc
-        run: sudo apt install libopusenc-dev
-      - run: cargo clippy --all-features
-      - run: cargo clippy --no-default-features
+          run: cargo clippy --all-features && cargo clippy --no-default-features
 
   test:
     name: cargo test
     runs-on: ubuntu-latest
+    container:
+      image: rust:bookworm
     steps:
       - uses: actions/checkout@v3
+      - uses: ./.github/actions/container
         with:
-          submodules: true
-      - uses: dtolnay/rust-toolchain@stable
-      - name: Install libopusenc
-        run: sudo apt install libopusenc-dev
-      - run: cargo test
+          run: cargo test

@@ -7,8 +7,8 @@
 //! # Example
 //!
 //! ```
-//! # use std::io::Read;//!
-//! # use opusenc::{Comments, Encoder, MappingFamily, RecommendedTag};//!
+//! # use std::io::Read;
+//! # use opusenc::{Comments, Encoder, MappingFamily, RecommendedTag};
 //! # fn main() -> Result<(), Box<dyn std::error::Error>> {
 //! let audio_data: Vec<i16> = {
 //!     let mut file = std::fs::File::open("/dev/urandom")?;

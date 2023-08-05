@@ -1,0 +1,27 @@
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+name: Build & Deploy API Reference
+
+jobs:
+  doc:
+    name: cargo doc
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/container
+        with:
+          run: cargo doc --workspace --no-deps
+      - name: Make docs directory writable
+        run: sudo chmod -R 777 ./target/doc
+      - name: Create redirect to opusenc crate docs
+        run: echo "<meta http-equiv=\"refresh\" content=\"0; url=build_wheel\">" > target/doc/index.html
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./target/doc
