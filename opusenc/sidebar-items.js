@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["Error","MappingFamily","OpusencError","PicardTag","PictureType","RecommendedTag"],"fn":["abi_version","version_str"],"struct":["Comments","Encoder"],"type":["Result"]};
