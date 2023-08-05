@@ -16,7 +16,7 @@ jobs:
         with:
           run: cargo doc --workspace --no-deps
       - name: Debug permission error
-        run: stat target && stat target/doc && stat target/doc/index.html
+        run: stat target && stat target/doc && stat target/doc/index.html && id
       - name: Create redirect to opusenc crate docs
         run: echo "<meta http-equiv=\"refresh\" content=\"0; url=build_wheel\">" > target/doc/index.html
       - name: Deploy
