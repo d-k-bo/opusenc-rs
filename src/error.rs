@@ -6,7 +6,9 @@ use std::{
     fmt::Display,
 };
 
-use num_enum::{FromPrimitive, IntoPrimitive, TryFromPrimitive, TryFromPrimitiveError};
+use num_enum::{FromPrimitive, IntoPrimitive};
+#[cfg(feature = "encoder-options")]
+use num_enum::{TryFromPrimitive, TryFromPrimitiveError};
 
 pub type Result<T> = std::result::Result<T, Error>;
 

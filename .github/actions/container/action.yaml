@@ -1,0 +1,13 @@
+name: Run in Rust/Opusenc container
+description: Executes a command in a container that has the rust toolchain and libopusenc installed
+
+inputs:
+  run:
+    description: the command to run
+    required: true
+
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+    - ${{ inputs.run }}
