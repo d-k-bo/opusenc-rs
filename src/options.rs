@@ -5,7 +5,7 @@ use num_enum::{IntoPrimitive, TryFromPrimitive};
 
 use crate::{Encoder, Result};
 
-pub use self::{ope::*, opus::*};
+pub use self::opus::*;
 pub use crate::ffi::{OPUS_AUTO, OPUS_BITRATE_MAX};
 
 mod opus {
