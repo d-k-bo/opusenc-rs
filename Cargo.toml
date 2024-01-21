@@ -3,7 +3,7 @@ members = [".", "opusenc-sys"]
 
 [package]
 name = "opusenc"
-version = "0.2.0"
+version = "0.2.1"
 edition = "2021"
 authors = ["d-k-bo <d-k-bo@mailbox.org>"]
 description = "High-level bindings for libopusenc."
@@ -19,7 +19,7 @@ encoder-options = []
 [dependencies]
 cstr = "0.2.11"
 num_enum = "0.7.2"
-opusenc-sys = { version = "0.2.0", path = "opusenc-sys" }
+opusenc-sys = { version = "0.2.1", path = "opusenc-sys" }
 
 [[package.metadata.release.pre-release-replacements]]
 file = "CHANGELOG.md"
