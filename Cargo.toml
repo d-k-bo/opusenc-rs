@@ -18,5 +18,5 @@ encoder-options = []
 
 [dependencies]
 cstr = "0.2.11"
-num_enum = "0.6.1"
+num_enum = "0.7.2"
 opusenc-sys = { version = "0.1.0", path = "opusenc-sys" }
