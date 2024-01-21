@@ -1,4 +1,4 @@
-//! Low-level binding for
+//! Low-level bindings for
 //! [libopusenc](https://opus-codec.org/docs/libopusenc_api-0.2/index.html).
 
 #![allow(non_upper_case_globals)]
