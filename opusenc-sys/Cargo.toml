@@ -8,6 +8,7 @@ repository = "https://github.com/d-k-bo/opusenc-rs"
 license = "BSD-3-Clause"
 keywords = ["opus", "vorbis", "codec", "audio", "music"]
 categories = ["external-ffi-bindings", "multimedia::audio"]
+links = "opusenc"
 
 [dependencies]
 
