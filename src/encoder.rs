@@ -123,7 +123,7 @@ impl Encoder {
     /// Get the next page from the stream
     ///
     /// Only use if creating encoder with [`Encoder::create_pull`].
-    pub fn get_page(&mut self, flush: bool) -> Option<Vec<u8>> {
+    pub fn get_page(&mut self, flush: bool) -> Option<&[u8]> {
         let mut page_ptr: *mut std::ffi::c_uchar = std::ptr::null_mut();
         let mut page_size = 0;
         unsafe {
@@ -134,10 +134,7 @@ impl Encoder {
                 flush as i32,
             );
             if available == 1 {
-                let len = page_size as usize;
-                let page_slice = std::slice::from_raw_parts(page_ptr, len);
-                let page_vec = page_slice.to_vec();
-                Some(page_vec)
+                Some(std::slice::from_raw_parts(page_ptr, page_size as usize))
             } else {
                 None
             }
