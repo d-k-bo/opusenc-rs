@@ -1,23 +1,23 @@
+use hound::WavReader;
 use opusenc::{Comments, Encoder, MappingFamily, RecommendedTag};
-use std::io::Read;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let audio_data: Vec<i16> = {
-        let mut file = std::fs::File::open("/dev/urandom")?;
-        let mut buf = vec![0; 60 * 48_000 * 2 * 2];
-        file.read_exact(&mut buf)?;
-        buf.chunks_exact(2)
-            .map(|a| i16::from_ne_bytes([a[0], a[1]]))
-            .collect()
-    };
+    let mut wav = WavReader::open("examples/speech_orig.wav")?;
+
+    let spec = wav.spec();
+    assert_eq!(spec.channels, 1);
+    assert_eq!(spec.sample_format, hound::SampleFormat::Int);
+    assert_eq!(spec.bits_per_sample, 16);
+
+    let audio_data = wav.samples::<i16>().collect::<hound::Result<Vec<i16>>>()?;
 
     let mut encoder = Encoder::create_file(
-        "/tmp/noise.opus",
+        "/tmp/speech.opus",
         Comments::create()
-            .add(RecommendedTag::Title, "Random Noise")?
-            .add(RecommendedTag::Artist, "/dev/urandom")?,
+            .add(RecommendedTag::Title, "Opus Speech Samples")?
+            .add(RecommendedTag::Artist, "Various Artists")?,
         48_000,
-        2,
+        1,
         MappingFamily::MonoStereo,
     )?;
 
