@@ -49,6 +49,31 @@ impl Encoder {
 
         Ok(Self { ptr, channels })
     }
+
+    /// Create a new OggOpus encoder in pull style.
+    ///
+    /// Use together with [`Encoder::get_page`] to get the encoded data.
+    pub fn create_pull(
+        comments: impl Borrow<Comments>,
+        rate: i32,
+        channels: usize,
+        family: MappingFamily,
+    ) -> Result<Self> {
+        let mut error = 0;
+        let ptr = unsafe {
+            crate::ffi::ope_encoder_create_pull(
+                comments.borrow().ptr(),
+                rate,
+                channels.try_into().unwrap(),
+                family as i32,
+                &mut error,
+            )
+        };
+        error.check_result()?;
+        assert!(!ptr.is_null());
+
+        Ok(Self { ptr, channels })
+    }
 }
 
 impl Encoder {
@@ -93,6 +118,27 @@ impl Encoder {
             )
         }
         .check_result()
+    }
+
+    /// Get the next page from the stream
+    ///
+    /// Only use if creating encoder with [`Encoder::create_pull`].
+    pub fn get_page(&mut self, flush: bool) -> Option<&[u8]> {
+        let mut page_ptr: *mut std::ffi::c_uchar = std::ptr::null_mut();
+        let mut page_size = 0;
+        unsafe {
+            let available = crate::ffi::ope_encoder_get_page(
+                self.ptr,
+                &mut page_ptr,
+                &mut page_size,
+                flush as i32,
+            );
+            if available == 1 {
+                Some(std::slice::from_raw_parts(page_ptr, page_size as usize))
+            } else {
+                None
+            }
+        }
     }
     /// Finalizes the stream.
     pub fn drain(&mut self) -> Result<()> {

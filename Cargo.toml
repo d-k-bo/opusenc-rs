@@ -21,6 +21,9 @@ cstr = "0.2.11"
 num_enum = "0.7.2"
 opusenc-sys = { version = "0.2.1", path = "opusenc-sys" }
 
+[dev-dependencies]
+hound = "3.5.1"
+
 [[package.metadata.release.pre-release-replacements]]
 file = "CHANGELOG.md"
 search = "## \\[Unreleased\\]"
