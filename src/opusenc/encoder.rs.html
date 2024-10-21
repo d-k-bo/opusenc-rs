@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/encoder.rs`."><title>encoder.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="opusenc" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/encoder.rs`."><title>encoder.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-492a78a4a87dcc01.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="opusenc" data-themes="" data-resource-suffix="" data-rustdoc-version="1.82.0 (f6e511eec 2024-10-15)" data-channel="1.82.0" data-search-js="search-a99f1315e7cc5121.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-118b08c4c78b968e.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-921df33f47b8780c.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-3b12f09e550e0385.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -152,6 +152,52 @@
 <a href="#152" id="152">152</a>
 <a href="#153" id="153">153</a>
 <a href="#154" id="154">154</a>
+<a href="#155" id="155">155</a>
+<a href="#156" id="156">156</a>
+<a href="#157" id="157">157</a>
+<a href="#158" id="158">158</a>
+<a href="#159" id="159">159</a>
+<a href="#160" id="160">160</a>
+<a href="#161" id="161">161</a>
+<a href="#162" id="162">162</a>
+<a href="#163" id="163">163</a>
+<a href="#164" id="164">164</a>
+<a href="#165" id="165">165</a>
+<a href="#166" id="166">166</a>
+<a href="#167" id="167">167</a>
+<a href="#168" id="168">168</a>
+<a href="#169" id="169">169</a>
+<a href="#170" id="170">170</a>
+<a href="#171" id="171">171</a>
+<a href="#172" id="172">172</a>
+<a href="#173" id="173">173</a>
+<a href="#174" id="174">174</a>
+<a href="#175" id="175">175</a>
+<a href="#176" id="176">176</a>
+<a href="#177" id="177">177</a>
+<a href="#178" id="178">178</a>
+<a href="#179" id="179">179</a>
+<a href="#180" id="180">180</a>
+<a href="#181" id="181">181</a>
+<a href="#182" id="182">182</a>
+<a href="#183" id="183">183</a>
+<a href="#184" id="184">184</a>
+<a href="#185" id="185">185</a>
+<a href="#186" id="186">186</a>
+<a href="#187" id="187">187</a>
+<a href="#188" id="188">188</a>
+<a href="#189" id="189">189</a>
+<a href="#190" id="190">190</a>
+<a href="#191" id="191">191</a>
+<a href="#192" id="192">192</a>
+<a href="#193" id="193">193</a>
+<a href="#194" id="194">194</a>
+<a href="#195" id="195">195</a>
+<a href="#196" id="196">196</a>
+<a href="#197" id="197">197</a>
+<a href="#198" id="198">198</a>
+<a href="#199" id="199">199</a>
+<a href="#200" id="200">200</a>
 </pre></div><pre class="rust"><code><span class="comment">// Copyright (c) 2023 d-k-bo
 // SPDX-License-Identifier: BSD-3-Clause
 
@@ -203,6 +249,31 @@
 
         <span class="prelude-val">Ok</span>(<span class="self">Self </span>{ ptr, channels })
     }
+
+    <span class="doccomment">/// Create a new OggOpus encoder in pull style.
+    ///
+    /// Use together with [`Encoder::get_page`] to get the encoded data.
+    </span><span class="kw">pub fn </span>create_pull(
+        comments: <span class="kw">impl </span>Borrow&lt;Comments&gt;,
+        rate: i32,
+        channels: usize,
+        family: MappingFamily,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>error = <span class="number">0</span>;
+        <span class="kw">let </span>ptr = <span class="kw">unsafe </span>{
+            <span class="kw">crate</span>::ffi::ope_encoder_create_pull(
+                comments.borrow().ptr(),
+                rate,
+                channels.try_into().unwrap(),
+                family <span class="kw">as </span>i32,
+                <span class="kw-2">&amp;mut </span>error,
+            )
+        };
+        error.check_result()<span class="question-mark">?</span>;
+        <span class="macro">assert!</span>(!ptr.is_null());
+
+        <span class="prelude-val">Ok</span>(<span class="self">Self </span>{ ptr, channels })
+    }
 }
 
 <span class="kw">impl </span>Encoder {
@@ -212,10 +283,10 @@
     ///
     /// # Panics
     ///
-    /// Panics if the sample count isn&#39;t a multiple of the channel count.
+    /// Panics if the sample count isn't a multiple of the channel count.
     </span><span class="kw">pub fn </span>write_float(<span class="kw-2">&amp;mut </span><span class="self">self</span>, pcm: <span class="kw-2">&amp;</span>[f32]) -&gt; <span class="prelude-ty">Result</span>&lt;()&gt; {
         <span class="kw">if </span>pcm.len() % <span class="self">self</span>.channels != <span class="number">0 </span>{
-            <span class="macro">panic!</span>(<span class="string">&quot;sample count must be a multiple of channel count&quot;</span>)
+            <span class="macro">panic!</span>(<span class="string">"sample count must be a multiple of channel count"</span>)
         }
 
         <span class="kw">unsafe </span>{
@@ -233,10 +304,10 @@
     ///
     /// # Panics
     ///
-    /// Panics if the sample count isn&#39;t a multiple of the channel count.
+    /// Panics if the sample count isn't a multiple of the channel count.
     </span><span class="kw">pub fn </span>write(<span class="kw-2">&amp;mut </span><span class="self">self</span>, pcm: <span class="kw-2">&amp;</span>[i16]) -&gt; <span class="prelude-ty">Result</span>&lt;()&gt; {
         <span class="kw">if </span>pcm.len() % <span class="self">self</span>.channels != <span class="number">0 </span>{
-            <span class="macro">panic!</span>(<span class="string">&quot;sample count must be a multiple of channel count&quot;</span>)
+            <span class="macro">panic!</span>(<span class="string">"sample count must be a multiple of channel count"</span>)
         }
 
         <span class="kw">unsafe </span>{
@@ -247,6 +318,27 @@
             )
         }
         .check_result()
+    }
+
+    <span class="doccomment">/// Get the next page from the stream
+    ///
+    /// Only use if creating encoder with [`Encoder::create_pull`].
+    </span><span class="kw">pub fn </span>get_page(<span class="kw-2">&amp;mut </span><span class="self">self</span>, flush: bool) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>[u8]&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>page_ptr: <span class="kw-2">*mut </span>std::ffi::c_uchar = std::ptr::null_mut();
+        <span class="kw">let </span><span class="kw-2">mut </span>page_size = <span class="number">0</span>;
+        <span class="kw">unsafe </span>{
+            <span class="kw">let </span>available = <span class="kw">crate</span>::ffi::ope_encoder_get_page(
+                <span class="self">self</span>.ptr,
+                <span class="kw-2">&amp;mut </span>page_ptr,
+                <span class="kw-2">&amp;mut </span>page_size,
+                flush <span class="kw">as </span>i32,
+            );
+            <span class="kw">if </span>available == <span class="number">1 </span>{
+                <span class="prelude-val">Some</span>(std::slice::from_raw_parts(page_ptr, page_size <span class="kw">as </span>usize))
+            } <span class="kw">else </span>{
+                <span class="prelude-val">None
+            </span>}
+        }
     }
     <span class="doccomment">/// Finalizes the stream.
     </span><span class="kw">pub fn </span>drain(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;()&gt; {
@@ -279,7 +371,7 @@
     }
     <span class="doccomment">/// Gets encoder options.
     </span><span class="attr">#[inline]
-    #[cfg(feature = <span class="string">&quot;encoder-options&quot;</span>)]
+    #[cfg(feature = <span class="string">"encoder-options"</span>)]
     </span><span class="kw">pub fn </span>get_option(<span class="kw-2">&amp;</span><span class="self">self</span>, request: u32) -&gt; <span class="prelude-ty">Result</span>&lt;i32&gt; {
         <span class="kw">let </span><span class="kw-2">mut </span>x = <span class="number">0</span>;
         <span class="kw">unsafe </span>{ <span class="kw">crate</span>::ffi::ope_encoder_get_option(<span class="self">self</span>.ptr, request, <span class="kw-2">&amp;mut </span>x) }.check_result()<span class="question-mark">?</span>;
@@ -287,7 +379,7 @@
     }
     <span class="doccomment">/// Sets encoder options.
     </span><span class="attr">#[inline]
-    #[cfg(feature = <span class="string">&quot;encoder-options&quot;</span>)]
+    #[cfg(feature = <span class="string">"encoder-options"</span>)]
     </span><span class="kw">pub fn </span>set_option(<span class="kw-2">&amp;mut </span><span class="self">self</span>, request: u32, value: i32) -&gt; <span class="prelude-ty">Result</span>&lt;()&gt; {
         <span class="kw">unsafe </span>{ <span class="kw">crate</span>::ffi::ope_encoder_set_option(<span class="self">self</span>.ptr, request, value) }.check_result()
     }

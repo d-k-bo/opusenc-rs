@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/comments.rs`."><title>comments.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="opusenc" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/comments.rs`."><title>comments.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-492a78a4a87dcc01.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="opusenc" data-themes="" data-resource-suffix="" data-rustdoc-version="1.82.0 (f6e511eec 2024-10-15)" data-channel="1.82.0" data-search-js="search-a99f1315e7cc5121.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-118b08c4c78b968e.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-921df33f47b8780c.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-3b12f09e550e0385.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -399,12 +399,12 @@
 ///
 /// # fn main() -&gt; opusenc::Result&lt;()&gt; {
 /// let comments = Comments::create()
-///     .add(RecommendedTag::Title, &quot;The Hardest Button to Button&quot;)?
-///     .add(RecommendedTag::Artist, &quot;The White Stripes&quot;)?
-///     .add(RecommendedTag::Album, &quot;Elephant&quot;)?
-///     .add(RecommendedTag::TrackNumber, &quot;9&quot;)?
-///     .add(PicardTag::AlbumArtist, &quot;The White Stripes&quot;)?
-///     .add(RecommendedTag::Isrc, &quot;USVT10300009&quot;)?;
+///     .add(RecommendedTag::Title, "The Hardest Button to Button")?
+///     .add(RecommendedTag::Artist, "The White Stripes")?
+///     .add(RecommendedTag::Album, "Elephant")?
+///     .add(RecommendedTag::TrackNumber, "9")?
+///     .add(PicardTag::AlbumArtist, "The White Stripes")?
+///     .add(RecommendedTag::Isrc, "USVT10300009")?;
 /// # Ok(())
 /// # }
 /// ```
@@ -521,7 +521,7 @@
 </span><span class="kw">pub enum </span>PictureType {
     <span class="doccomment">/// Other
     </span>Other = <span class="number">0</span>,
-    <span class="doccomment">/// 32x32 pixel &#39;file icon&#39; (PNG only)
+    <span class="doccomment">/// 32x32 pixel 'file icon' (PNG only)
     </span>FileIcon32 = <span class="number">1</span>,
     <span class="doccomment">/// Other file icon
     </span>OtherFileIcon = <span class="number">2</span>,
@@ -564,7 +564,7 @@
     </span>PublisherLogotype = <span class="number">20</span>,
 }
 
-<span class="macro">macro_rules! </span>tag_names {
+<span class="macro">macro_rules!</span> tag_names {
     {
         $( <span class="attr">#[<span class="macro-nonterminal">$enum_attr</span>:meta] </span>)*
         <span class="macro-nonterminal">$vis</span>:vis <span class="kw">enum </span><span class="macro-nonterminal">$enum_name</span>:ident {
@@ -580,14 +580,14 @@
             )*
         }
         <span class="kw">impl </span><span class="macro-nonterminal">$enum_name </span>{
-            <span class="macro-nonterminal">$vis </span><span class="kw">fn </span>as_str(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str {
+            <span class="macro-nonterminal">$vis </span><span class="kw">fn </span>as_str(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str {
                 <span class="kw">match </span><span class="self">self </span>{
                     $(
                         <span class="macro-nonterminal">$enum_name</span>::<span class="macro-nonterminal">$variant </span>=&gt; <span class="macro-nonterminal">$val</span>,
                     )*
                 }
             }
-            <span class="macro-nonterminal">$vis </span><span class="kw">fn </span>as_cstr(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>CStr {
+            <span class="macro-nonterminal">$vis </span><span class="kw">fn </span>as_cstr(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">'static </span>CStr {
                 <span class="kw">match </span><span class="self">self </span>{
                     $(
                         <span class="macro-nonterminal">$enum_name</span>::<span class="macro-nonterminal">$variant </span>=&gt; <span class="macro">cstr!</span>(<span class="macro-nonterminal">$val</span>),
@@ -606,14 +606,14 @@
             }
         }
         <span class="kw">impl </span>Display <span class="kw">for </span><span class="macro-nonterminal">$enum_name </span>{
-            <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; std::fmt::Result {
+            <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; std::fmt::Result {
                 f.write_str(<span class="self">self</span>.as_str())
             }
         }
     };
 }
 
-<span class="macro">tag_names! </span>{
+<span class="macro">tag_names!</span> {
     <span class="doccomment">/// Tags recommended by the Ogg Vorbis specification.
     ///
     /// &lt;https://xiph.org/vorbis/doc/v-comment.html&gt;
@@ -621,39 +621,39 @@
     #[non_exhaustive]
     </span><span class="kw">pub enum </span>RecommendedTag {
         <span class="doccomment">/// Track/Work name
-        </span>Title = <span class="string">&quot;TITLE&quot;</span>,
+        </span>Title = <span class="string">"TITLE"</span>,
         <span class="doccomment">/// The version field may be used to differentiate multiple versions of the same track title in a single collection. (e.g. remix info)
-        </span>Version = <span class="string">&quot;VERSION&quot;</span>,
+        </span>Version = <span class="string">"VERSION"</span>,
         <span class="doccomment">/// The collection name to which this track belongs
-        </span>Album = <span class="string">&quot;ALBUM&quot;</span>,
+        </span>Album = <span class="string">"ALBUM"</span>,
         <span class="doccomment">/// The track number of this piece if part of a specific larger collection or album
-        </span>TrackNumber = <span class="string">&quot;TRACKNUMBER&quot;</span>,
+        </span>TrackNumber = <span class="string">"TRACKNUMBER"</span>,
         <span class="doccomment">/// The artist generally considered responsible for the work. In popular music this is usually the performing band or singer. For classical music it would be the composer. For an audio book it would be the author of the original text.
-        </span>Artist = <span class="string">&quot;ARTIST&quot;</span>,
+        </span>Artist = <span class="string">"ARTIST"</span>,
         <span class="doccomment">/// The artist(s) who performed the work. In classical music this would be the conductor, orchestra, soloists. In an audio book it would be the actor who did the reading. In popular music this is typically the same as the ARTIST and is omitted.
-        </span>Performer = <span class="string">&quot;PERFORMER&quot;</span>,
-        <span class="doccomment">/// Copyright attribution, e.g., &#39;2001 Nobody&#39;s Band&#39; or &#39;1999 Jack Moffitt&#39;
-        </span>Copyright = <span class="string">&quot;COPYRIGHT&quot;</span>,
-        <span class="doccomment">/// License information, for example, &#39;All Rights Reserved&#39;, &#39;Any Use Permitted&#39;, a URL to a license such as a Creative Commons license (e.g. &quot;creativecommons.org/licenses/by/4.0/&quot;), or similar.
-        </span>License = <span class="string">&quot;LICENSE&quot;</span>,
-        <span class="doccomment">/// Name of the organization producing the track (i.e. the &#39;record label&#39;)
-        </span>Organization = <span class="string">&quot;ORGANIZATION&quot;</span>,
+        </span>Performer = <span class="string">"PERFORMER"</span>,
+        <span class="doccomment">/// Copyright attribution, e.g., '2001 Nobody's Band' or '1999 Jack Moffitt'
+        </span>Copyright = <span class="string">"COPYRIGHT"</span>,
+        <span class="doccomment">/// License information, for example, 'All Rights Reserved', 'Any Use Permitted', a URL to a license such as a Creative Commons license (e.g. "creativecommons.org/licenses/by/4.0/"), or similar.
+        </span>License = <span class="string">"LICENSE"</span>,
+        <span class="doccomment">/// Name of the organization producing the track (i.e. the 'record label')
+        </span>Organization = <span class="string">"ORGANIZATION"</span>,
         <span class="doccomment">/// A short text description of the contents
-        </span>Description = <span class="string">&quot;DESCRIPTION&quot;</span>,
+        </span>Description = <span class="string">"DESCRIPTION"</span>,
         <span class="doccomment">/// A short text indication of music genre
-        </span>Genre = <span class="string">&quot;GENRE&quot;</span>,
+        </span>Genre = <span class="string">"GENRE"</span>,
         <span class="doccomment">/// Date the track was recorded
-        </span>Date = <span class="string">&quot;DATE&quot;</span>,
+        </span>Date = <span class="string">"DATE"</span>,
         <span class="doccomment">/// Location where track was recorded
-        </span>Location = <span class="string">&quot;LOCATION&quot;</span>,
+        </span>Location = <span class="string">"LOCATION"</span>,
         <span class="doccomment">/// Contact information for the creators or distributors of the track. This could be a URL, an email address, the physical address of the producing label.
-        </span>Contact = <span class="string">&quot;CONTACT&quot;</span>,
+        </span>Contact = <span class="string">"CONTACT"</span>,
         <span class="doccomment">/// ISRC number for the track; see [the ISRC intro page](https://isrc.ifpi.org/) for more information on ISRC numbers.
-        </span>Isrc = <span class="string">&quot;ISRC&quot;</span>,
+        </span>Isrc = <span class="string">"ISRC"</span>,
     }
 }
 
-<span class="macro">tag_names! </span>{
+<span class="macro">tag_names!</span> {
     <span class="doccomment">/// Common tags used by Musicbrainz Picard.
     ///
     /// &lt;https://picard-docs.musicbrainz.org/en/appendices/tag_mapping.html&gt;
@@ -662,90 +662,90 @@
     </span><span class="attr">#[derive(Copy, Clone, Debug)]
     #[non_exhaustive]
     </span><span class="kw">pub enum </span>PicardTag {
-        AcoustID = <span class="string">&quot;ACOUSTID_ID&quot;</span>,
-        AcoustIDFingerprint = <span class="string">&quot;ACOUSTID_FINGERPRINT&quot;</span>,
-        Album = <span class="string">&quot;ALBUM&quot;</span>,
-        AlbumArtist = <span class="string">&quot;ALBUMARTIST&quot;</span>,
-        AlbumArtistSortOrder = <span class="string">&quot;ALBUMARTISTSORT&quot;</span>,
-        AlbumSortOrder = <span class="string">&quot;ALBUMSORT&quot;</span>,
-        Arranger = <span class="string">&quot;ARRANGER&quot;</span>,
-        Artist = <span class="string">&quot;ARTIST&quot;</span>,
-        ArtistSortOrder = <span class="string">&quot;ARTISTSORT&quot;</span>,
-        Artists = <span class="string">&quot;ARTISTS&quot;</span>,
-        ASIN = <span class="string">&quot;ASIN&quot;</span>,
-        Barcode = <span class="string">&quot;BARCODE&quot;</span>,
-        BPM = <span class="string">&quot;BPM&quot;</span>,
-        CatalogNumber = <span class="string">&quot;CATALOGNUMBER&quot;</span>,
-        Comment = <span class="string">&quot;COMMENT&quot;</span>,
-        Compilation = <span class="string">&quot;COMPILATION&quot;</span>,
-        Composer = <span class="string">&quot;COMPOSER&quot;</span>,
-        ComposerSortOrder = <span class="string">&quot;COMPOSERSORT&quot;</span>,
-        Conductor = <span class="string">&quot;CONDUCTOR&quot;</span>,
-        Copyright = <span class="string">&quot;COPYRIGHT&quot;</span>,
-        Director = <span class="string">&quot;DIRECTOR&quot;</span>,
-        DiscNumber = <span class="string">&quot;DISCNUMBER&quot;</span>,
-        DiscSubtitle = <span class="string">&quot;DISCSUBTITLE&quot;</span>,
-        EncodedBy = <span class="string">&quot;ENCODEDBY&quot;</span>,
-        EncoderSettings = <span class="string">&quot;ENCODERSETTINGS&quot;</span>,
-        Engineer = <span class="string">&quot;ENGINEER&quot;</span>,
-        Genre = <span class="string">&quot;GENRE&quot;</span>,
-        Grouping = <span class="string">&quot;GROUPING&quot;</span>,
-        InitialKey = <span class="string">&quot;KEY&quot;</span>,
-        Isrc = <span class="string">&quot;ISRC&quot;</span>,
-        Language = <span class="string">&quot;LANGUAGE&quot;</span>,
-        License = <span class="string">&quot;LICENSE&quot;</span>,
-        Lyricist = <span class="string">&quot;LYRICIST&quot;</span>,
-        Lyrics = <span class="string">&quot;LYRICS&quot;</span>,
-        Media = <span class="string">&quot;MEDIA&quot;</span>,
-        MixDJ = <span class="string">&quot;DJMIXER&quot;</span>,
-        Mixer = <span class="string">&quot;MIXER&quot;</span>,
-        Mood = <span class="string">&quot;MOOD&quot;</span>,
-        Movement = <span class="string">&quot;MOVEMENTNAME&quot;</span>,
-        MovementCount = <span class="string">&quot;MOVEMENTTOTAL&quot;</span>,
-        MovementNumber = <span class="string">&quot;MOVEMENT&quot;</span>,
-        MusicBrainzArtistID = <span class="string">&quot;MUSICBRAINZ_ARTISTID&quot;</span>,
-        MusicBrainzDiscID = <span class="string">&quot;MUSICBRAINZ_DISCID&quot;</span>,
-        MusicBrainzOriginalArtistID = <span class="string">&quot;MUSICBRAINZ_ORIGINALARTISTID&quot;</span>,
-        MusicBrainzOriginalReleaseID = <span class="string">&quot;MUSICBRAINZ_ORIGINALALBUMID&quot;</span>,
-        MusicBrainzRecordingID = <span class="string">&quot;MUSICBRAINZ_TRACKID&quot;</span>,
-        MusicBrainzReleaseArtistID = <span class="string">&quot;MUSICBRAINZ_ALBUMARTISTID&quot;</span>,
-        MusicBrainzReleaseGroupID = <span class="string">&quot;MUSICBRAINZ_RELEASEGROUPID&quot;</span>,
-        MusicBrainzReleaseID = <span class="string">&quot;MUSICBRAINZ_ALBUMID&quot;</span>,
-        MusicBrainzTrackID = <span class="string">&quot;MUSICBRAINZ_RELEASETRACKID&quot;</span>,
-        MusicBrainzTRMID = <span class="string">&quot;MUSICBRAINZ_TRMID&quot;</span>,
-        MusicBrainzWorkID = <span class="string">&quot;MUSICBRAINZ_WORKID&quot;</span>,
-        MusicIPFingerprint = <span class="string">&quot;FINGERPRINT&quot;</span>,
-        MusicIPPUID = <span class="string">&quot;MUSICIP_PUID&quot;</span>,
-        OriginalFilename = <span class="string">&quot;ORIGINALFILENAME&quot;</span>,
-        OriginalReleaseDate = <span class="string">&quot;ORIGINALDATE&quot;</span>,
-        OriginalReleaseYear = <span class="string">&quot;ORIGINALYEAR&quot;</span>,
-        Performer = <span class="string">&quot;PERFORMER&quot;</span>,
-        Producer = <span class="string">&quot;PRODUCER&quot;</span>,
-        Rating = <span class="string">&quot;RATING&quot;</span>,
-        RecordLabel = <span class="string">&quot;LABEL&quot;</span>,
-        ReleaseCountry = <span class="string">&quot;RELEASECOUNTRY&quot;</span>,
-        ReleaseDate = <span class="string">&quot;DATE&quot;</span>,
-        ReleaseStatus = <span class="string">&quot;RELEASESTATUS&quot;</span>,
-        ReleaseType = <span class="string">&quot;RELEASETYPE&quot;</span>,
-        Remixer = <span class="string">&quot;REMIXER&quot;</span>,
-        ReplayGainAlbumGain = <span class="string">&quot;REPLAYGAIN_ALBUM_GAIN&quot;</span>,
-        ReplayGainAlbumPeak = <span class="string">&quot;REPLAYGAIN_ALBUM_PEAK&quot;</span>,
-        ReplayGainAlbumRange = <span class="string">&quot;REPLAYGAIN_ALBUM_RANGE&quot;</span>,
-        ReplayGainReferenceLoudness = <span class="string">&quot;REPLAYGAIN_REFERENCE_LOUDNESS&quot;</span>,
-        ReplayGainTrackGain = <span class="string">&quot;REPLAYGAIN_TRACK_GAIN&quot;</span>,
-        ReplayGainTrackPeak = <span class="string">&quot;REPLAYGAIN_TRACK_PEAK&quot;</span>,
-        ReplayGainTrackRange = <span class="string">&quot;REPLAYGAIN_TRACK_RANGE&quot;</span>,
-        Script = <span class="string">&quot;SCRIPT&quot;</span>,
-        ShowWorkMovement = <span class="string">&quot;SHOWMOVEMENT&quot;</span>,
-        Subtitle = <span class="string">&quot;SUBTITLE&quot;</span>,
-        TotalDiscs = <span class="string">&quot;TOTALDISCS&quot;</span>,
-        TotalTracks = <span class="string">&quot;TOTALTRACKS&quot;</span>,
-        TrackNumber = <span class="string">&quot;TRACKNUMBER&quot;</span>,
-        TrackTitle = <span class="string">&quot;TITLE&quot;</span>,
-        TrackTitleSortOrder = <span class="string">&quot;TITLESORT&quot;</span>,
-        Website = <span class="string">&quot;WEBSITE&quot;</span>,
-        WorkTitle = <span class="string">&quot;WORK&quot;</span>,
-        Writer = <span class="string">&quot;WRITER&quot;</span>,
+        AcoustID = <span class="string">"ACOUSTID_ID"</span>,
+        AcoustIDFingerprint = <span class="string">"ACOUSTID_FINGERPRINT"</span>,
+        Album = <span class="string">"ALBUM"</span>,
+        AlbumArtist = <span class="string">"ALBUMARTIST"</span>,
+        AlbumArtistSortOrder = <span class="string">"ALBUMARTISTSORT"</span>,
+        AlbumSortOrder = <span class="string">"ALBUMSORT"</span>,
+        Arranger = <span class="string">"ARRANGER"</span>,
+        Artist = <span class="string">"ARTIST"</span>,
+        ArtistSortOrder = <span class="string">"ARTISTSORT"</span>,
+        Artists = <span class="string">"ARTISTS"</span>,
+        ASIN = <span class="string">"ASIN"</span>,
+        Barcode = <span class="string">"BARCODE"</span>,
+        BPM = <span class="string">"BPM"</span>,
+        CatalogNumber = <span class="string">"CATALOGNUMBER"</span>,
+        Comment = <span class="string">"COMMENT"</span>,
+        Compilation = <span class="string">"COMPILATION"</span>,
+        Composer = <span class="string">"COMPOSER"</span>,
+        ComposerSortOrder = <span class="string">"COMPOSERSORT"</span>,
+        Conductor = <span class="string">"CONDUCTOR"</span>,
+        Copyright = <span class="string">"COPYRIGHT"</span>,
+        Director = <span class="string">"DIRECTOR"</span>,
+        DiscNumber = <span class="string">"DISCNUMBER"</span>,
+        DiscSubtitle = <span class="string">"DISCSUBTITLE"</span>,
+        EncodedBy = <span class="string">"ENCODEDBY"</span>,
+        EncoderSettings = <span class="string">"ENCODERSETTINGS"</span>,
+        Engineer = <span class="string">"ENGINEER"</span>,
+        Genre = <span class="string">"GENRE"</span>,
+        Grouping = <span class="string">"GROUPING"</span>,
+        InitialKey = <span class="string">"KEY"</span>,
+        Isrc = <span class="string">"ISRC"</span>,
+        Language = <span class="string">"LANGUAGE"</span>,
+        License = <span class="string">"LICENSE"</span>,
+        Lyricist = <span class="string">"LYRICIST"</span>,
+        Lyrics = <span class="string">"LYRICS"</span>,
+        Media = <span class="string">"MEDIA"</span>,
+        MixDJ = <span class="string">"DJMIXER"</span>,
+        Mixer = <span class="string">"MIXER"</span>,
+        Mood = <span class="string">"MOOD"</span>,
+        Movement = <span class="string">"MOVEMENTNAME"</span>,
+        MovementCount = <span class="string">"MOVEMENTTOTAL"</span>,
+        MovementNumber = <span class="string">"MOVEMENT"</span>,
+        MusicBrainzArtistID = <span class="string">"MUSICBRAINZ_ARTISTID"</span>,
+        MusicBrainzDiscID = <span class="string">"MUSICBRAINZ_DISCID"</span>,
+        MusicBrainzOriginalArtistID = <span class="string">"MUSICBRAINZ_ORIGINALARTISTID"</span>,
+        MusicBrainzOriginalReleaseID = <span class="string">"MUSICBRAINZ_ORIGINALALBUMID"</span>,
+        MusicBrainzRecordingID = <span class="string">"MUSICBRAINZ_TRACKID"</span>,
+        MusicBrainzReleaseArtistID = <span class="string">"MUSICBRAINZ_ALBUMARTISTID"</span>,
+        MusicBrainzReleaseGroupID = <span class="string">"MUSICBRAINZ_RELEASEGROUPID"</span>,
+        MusicBrainzReleaseID = <span class="string">"MUSICBRAINZ_ALBUMID"</span>,
+        MusicBrainzTrackID = <span class="string">"MUSICBRAINZ_RELEASETRACKID"</span>,
+        MusicBrainzTRMID = <span class="string">"MUSICBRAINZ_TRMID"</span>,
+        MusicBrainzWorkID = <span class="string">"MUSICBRAINZ_WORKID"</span>,
+        MusicIPFingerprint = <span class="string">"FINGERPRINT"</span>,
+        MusicIPPUID = <span class="string">"MUSICIP_PUID"</span>,
+        OriginalFilename = <span class="string">"ORIGINALFILENAME"</span>,
+        OriginalReleaseDate = <span class="string">"ORIGINALDATE"</span>,
+        OriginalReleaseYear = <span class="string">"ORIGINALYEAR"</span>,
+        Performer = <span class="string">"PERFORMER"</span>,
+        Producer = <span class="string">"PRODUCER"</span>,
+        Rating = <span class="string">"RATING"</span>,
+        RecordLabel = <span class="string">"LABEL"</span>,
+        ReleaseCountry = <span class="string">"RELEASECOUNTRY"</span>,
+        ReleaseDate = <span class="string">"DATE"</span>,
+        ReleaseStatus = <span class="string">"RELEASESTATUS"</span>,
+        ReleaseType = <span class="string">"RELEASETYPE"</span>,
+        Remixer = <span class="string">"REMIXER"</span>,
+        ReplayGainAlbumGain = <span class="string">"REPLAYGAIN_ALBUM_GAIN"</span>,
+        ReplayGainAlbumPeak = <span class="string">"REPLAYGAIN_ALBUM_PEAK"</span>,
+        ReplayGainAlbumRange = <span class="string">"REPLAYGAIN_ALBUM_RANGE"</span>,
+        ReplayGainReferenceLoudness = <span class="string">"REPLAYGAIN_REFERENCE_LOUDNESS"</span>,
+        ReplayGainTrackGain = <span class="string">"REPLAYGAIN_TRACK_GAIN"</span>,
+        ReplayGainTrackPeak = <span class="string">"REPLAYGAIN_TRACK_PEAK"</span>,
+        ReplayGainTrackRange = <span class="string">"REPLAYGAIN_TRACK_RANGE"</span>,
+        Script = <span class="string">"SCRIPT"</span>,
+        ShowWorkMovement = <span class="string">"SHOWMOVEMENT"</span>,
+        Subtitle = <span class="string">"SUBTITLE"</span>,
+        TotalDiscs = <span class="string">"TOTALDISCS"</span>,
+        TotalTracks = <span class="string">"TOTALTRACKS"</span>,
+        TrackNumber = <span class="string">"TRACKNUMBER"</span>,
+        TrackTitle = <span class="string">"TITLE"</span>,
+        TrackTitleSortOrder = <span class="string">"TITLESORT"</span>,
+        Website = <span class="string">"WEBSITE"</span>,
+        WorkTitle = <span class="string">"WORK"</span>,
+        Writer = <span class="string">"WRITER"</span>,
     }
 }
 </code></pre></div></section></main></body></html>
