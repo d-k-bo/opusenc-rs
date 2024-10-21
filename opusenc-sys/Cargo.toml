@@ -1,6 +1,6 @@
 [package]
 name = "opusenc-sys"
-version = "0.2.1"
+version = "0.2.2"
 edition = "2021"
 authors = ["d-k-bo <d-k-bo@mailbox.org>"]
 description = "Low-level bindings for libopusenc."
