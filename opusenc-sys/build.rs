@@ -13,37 +13,54 @@ fn add_link_search<P: AsRef<std::path::Path>>(path: P) {
   }
 }
 
-
 fn main() {
     println!("cargo:rustc-link-lib=opusenc");
     println!("cargo:rerun-if-changed=wrapper.h");
 
-    let mut clang_args = vec!();
+    let mut clang_args = Vec::new();
     if let Ok(opus_include) = std::env::var("OPUS_INCLUDE_DIR") {
-        clang_args.push("-I".into());
+        clang_args.push("-isystem".into());
         clang_args.push(opus_include);
     }
 
     #[cfg(target_os = "macos")] {
-        add_include("/opt/homebrew/include", &mut clang_args);
-        add_include("/opt/homebrew/include/opus", &mut clang_args);
-        add_include("/usr/local/include", &mut clang_args);
-        add_include("/usr/local/include/opus", &mut clang_args);
-        add_include("/usr/include", &mut clang_args);
-        add_include("/usr/include/opus", &mut clang_args);
+        let include_paths= [
+            "/opt/homebrew/include",
+            "/usr/local/include", 
+            "/usr/include",
+            "/opt/homebrew/include/opus", 
+            "/usr/local/include/opus",
+            "/usr/include/opus",
+        ];
 
-        add_link_search(PathBuf::from("/opt/homebrew/lib"));
-        add_link_search(PathBuf::from("/usr/local/lib"));
+        let lib_paths = [
+            "/opt/homebrew/lib",
+            "/usr/local/lib"
+        ];
+        for path in include_paths { 
+          add_include( PathBuf::from(path), &mut clang_args); 
+        }
+        for path in lib_paths { 
+          add_link_search(PathBuf::from(path)); 
+        }
+
     }
 
     #[cfg(not(target_os = "macos"))] {
-        add_include("/usr/include", &mut clang_args);
-        add_include("/usr/local/include", &mut clang_args);
-        add_include("/usr/include/opus", &mut clang_args);
-        add_include("/usr/local/include/opus", &mut clang_args);
+        let include_paths= [
+            "/usr/include",
+            "/usr/local/include", 
+            "/usr/include/opus", 
+            "/usr/local/include/opus",
+        ];
 
-        add_link_search(PathBuf::from("/usr/lib"));
-        add_link_search(PathBuf::from("/usr/local/lib"));
+        let lib_paths = [
+            "/usr/lib",
+            "/usr/local/lib"
+        ];
+
+        for path in include_paths { add_include(path, &mut clang_args); }
+        for path in lib_paths { add_link_search(path); }
     }
 
     if let Ok(opus_lib) = std::env::var("OPUS_LIB_DIR") {
