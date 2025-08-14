@@ -19,11 +19,18 @@ fn main() {
     println!("cargo:rerun-if-changed=wrapper.h");
 
     let mut clang_args = vec!();
+    if let Ok(opus_include) = std::env::var("OPUS_INCLUDE_DIR") {
+        clang_args.push("-I".into());
+        clang_args.push(opus_include);
+    }
 
     #[cfg(target_os = "macos")] {
         add_include("/opt/homebrew/include", &mut clang_args);
+        add_include("/opt/homebrew/include/opus", &mut clang_args);
         add_include("/usr/local/include", &mut clang_args);
+        add_include("/usr/local/include/opus", &mut clang_args);
         add_include("/usr/include", &mut clang_args);
+        add_include("/usr/include/opus", &mut clang_args);
 
         add_link_search(PathBuf::from("/opt/homebrew/lib"));
         add_link_search(PathBuf::from("/usr/local/lib"));
@@ -32,9 +39,15 @@ fn main() {
     #[cfg(not(target_os = "macos"))] {
         add_include("/usr/include", &mut clang_args);
         add_include("/usr/local/include", &mut clang_args);
+        add_include("/usr/include/opus", &mut clang_args);
+        add_include("/usr/local/include/opus", &mut clang_args);
 
         add_link_search(PathBuf::from("/usr/lib"));
         add_link_search(PathBuf::from("/usr/local/lib"));
+    }
+
+    if let Ok(opus_lib) = std::env::var("OPUS_LIB_DIR") {
+      println!("cargo:rustc-link-search={opus_lib}")
     }
 
     let bindings = bindgen::Builder::default()
