@@ -37,13 +37,9 @@ fn main() {
             "/opt/homebrew/lib",
             "/usr/local/lib"
         ];
-        for path in include_paths { 
-          add_include( PathBuf::from(path), &mut clang_args); 
-        }
-        for path in lib_paths { 
-          add_link_search(PathBuf::from(path)); 
-        }
 
+        include_paths.iter().for_each(|path| add_include(path, &mut clang_args));
+        lib_paths.iter().for_each(add_link_search);
     }
 
     #[cfg(not(target_os = "macos"))] {
@@ -59,8 +55,8 @@ fn main() {
             "/usr/local/lib"
         ];
 
-        for path in include_paths { add_include(path, &mut clang_args); }
-        for path in lib_paths { add_link_search(path); }
+        include_paths.iter().for_each(|path| add_include(path, &mut clang_args));
+        lib_paths.iter().for_each(add_link_search);
     }
 
     if let Ok(opus_lib) = std::env::var("OPUS_LIB_DIR") {
