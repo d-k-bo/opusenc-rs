@@ -13,4 +13,5 @@ links = "opusenc"
 [dependencies]
 
 [build-dependencies]
-bindgen = "0.69.2"
+bindgen = "0.72.1"
+pkg-config = "0.3.32"
