@@ -10,8 +10,6 @@ use std::{
 
 use crate::error::{CheckResult, Result};
 
-use cstr::cstr;
-
 /// Comments to be attached to an Ogg Opus file.
 ///
 /// Can contain metadata in [VorbisComment](https://wiki.xiph.org/VorbisComment)
@@ -205,27 +203,28 @@ macro_rules! tag_names {
             )*
         }
         impl $enum_name {
-            $vis fn as_str(&self) -> &'static str {
+            const fn as_cstr8(&self) -> &'static cstr8::CStr8 {
                 match self {
                     $(
-                        $enum_name::$variant => $val,
+                        $enum_name::$variant => cstr8::cstr8!($val),
                     )*
                 }
             }
-            $vis fn as_cstr(&self) -> &'static CStr {
-                match self {
-                    $(
-                        $enum_name::$variant => cstr!($val),
-                    )*
-                }
+            $vis const fn as_str(&self) -> &'static str {
+                self.as_cstr8().as_str()
+            }
+            $vis const fn as_cstr(&self) -> &'static CStr {
+                self.as_cstr8().as_c_str()
             }
         }
         impl AsRef<str> for $enum_name {
+            #[inline]
             fn as_ref(&self) -> &str {
                 self.as_str()
             }
         }
         impl AsRef<CStr> for $enum_name {
+            #[inline]
             fn as_ref(&self) -> &CStr {
                 self.as_cstr()
             }

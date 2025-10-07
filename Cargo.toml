@@ -17,7 +17,7 @@ default = []
 encoder-options = []
 
 [dependencies]
-cstr = "0.2.11"
+cstr8 = { version = "0.1.4", default-features = false }
 num_enum = "0.7.2"
 opusenc-sys = { version = "0.2.2", path = "opusenc-sys" }
 
