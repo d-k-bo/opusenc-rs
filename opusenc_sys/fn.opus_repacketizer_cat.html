@@ -1,5 +1,49 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `opus_repacketizer_cat` fn in crate `opusenc_sys`."><title>opus_repacketizer_cat in opusenc_sys - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../static.files/rustdoc-492a78a4a87dcc01.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="opusenc_sys" data-themes="" data-resource-suffix="" data-rustdoc-version="1.82.0 (f6e511eec 2024-10-15)" data-channel="1.82.0" data-search-js="search-a99f1315e7cc5121.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../static.files/storage-118b08c4c78b968e.js"></script><script defer src="sidebar-items.js"></script><script defer src="../static.files/main-921df33f47b8780c.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-3b12f09e550e0385.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc fn"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../opusenc_sys/index.html">opusenc_<wbr>sys</a><span class="version">0.2.2</span></h2></div><div class="sidebar-elems"></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1>Function <a href="index.html">opusenc_sys</a>::<wbr><a class="fn" href="#">opus_repacketizer_cat</a><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><span class="out-of-band"><a class="src" href="../src/opusenc_sys/github/workspace/target/debug/build/opusenc-sys-106f6f2d201c5e2e/out/bindings.rs.html#537-541">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub unsafe extern &quot;C&quot; fn opus_repacketizer_cat(
-    rp: <a class="primitive" href="https://doc.rust-lang.org/1.82.0/std/primitive.pointer.html">*mut </a><a class="struct" href="struct.OpusRepacketizer.html" title="struct opusenc_sys::OpusRepacketizer">OpusRepacketizer</a>,
-    data: <a class="primitive" href="https://doc.rust-lang.org/1.82.0/std/primitive.pointer.html">*const </a><a class="type" href="https://doc.rust-lang.org/1.82.0/std/os/raw/type.c_uchar.html" title="type std::os::raw::c_uchar">c_uchar</a>,
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Add a packet to the current repacketizer state. This packet must match the configuration of any packets already submitted for repacketization since the last call to opus_repacketizer_init(). This means that it must have the same coding mode, audio bandwidth, frame size, and channel count. This can be checked in advance by examining the top 6 bits of the first byte of the packet, and ensuring they match the top 6 bits of the first byte of any previously submitted packet. The total duration of audio in the repacketizer state also must not exceed 120 ms, the maximum duration of a single packet, after adding this packet."><title>opus_repacketizer_cat in opusenc_sys - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../static.files/rustdoc-aa0817cf.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="opusenc_sys" data-themes="" data-resource-suffix="" data-rustdoc-version="1.90.0 (1159e78c4 2025-09-14)" data-channel="1.90.0" data-search-js="search-fa3e91e5.js" data-settings-js="settings-5514c975.js" ><script src="../static.files/storage-68b7e25d.js"></script><script defer src="sidebar-items.js"></script><script defer src="../static.files/main-eebb9057.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-32bb7600.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-044be391.svg"></head><body class="rustdoc fn"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../opusenc_sys/index.html">opusenc_<wbr>sys</a><span class="version">0.2.2</span></h2></div><div class="sidebar-elems"><div id="rustdoc-modnav"></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="index.html">opusenc_sys</a></div><h1>Function <span class="fn">opus_repacketizer_cat</span><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../src/opusenc_sys/github/workspace/target/debug/build/opusenc-sys-b68db0b67950f0ca/out/bindings.rs.html#521-525">Source</a> </span></div><pre class="rust item-decl"><code>pub unsafe extern &quot;C&quot; fn opus_repacketizer_cat(
+    rp: <a class="primitive" href="https://doc.rust-lang.org/1.90.0/std/primitive.pointer.html">*mut </a><a class="struct" href="struct.OpusRepacketizer.html" title="struct opusenc_sys::OpusRepacketizer">OpusRepacketizer</a>,
+    data: <a class="primitive" href="https://doc.rust-lang.org/1.90.0/std/primitive.pointer.html">*const </a><a class="type" href="https://doc.rust-lang.org/1.90.0/std/os/raw/type.c_uchar.html" title="type std::os::raw::c_uchar">c_uchar</a>,
     len: <a class="type" href="type.opus_int32.html" title="type opusenc_sys::opus_int32">opus_int32</a>,
-) -&gt; <a class="type" href="https://doc.rust-lang.org/1.82.0/std/os/raw/type.c_int.html" title="type std::os::raw::c_int">c_int</a></code></pre></section></div></main></body></html>
+) -&gt; <a class="type" href="https://doc.rust-lang.org/1.90.0/std/os/raw/type.c_int.html" title="type std::os::raw::c_int">c_int</a></code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Add a packet to the current repacketizer state.
+This packet must match the configuration of any packets already submitted
+for repacketization since the last call to opus_repacketizer_init().
+This means that it must have the same coding mode, audio bandwidth, frame
+size, and channel count.
+This can be checked in advance by examining the top 6 bits of the first
+byte of the packet, and ensuring they match the top 6 bits of the first
+byte of any previously submitted packet.
+The total duration of audio in the repacketizer state also must not exceed
+120 ms, the maximum duration of a single packet, after adding this packet.</p>
+<p>The contents of the current repacketizer state can be extracted into new
+packets using opus_repacketizer_out() or opus_repacketizer_out_range().</p>
+<p>In order to add a packet with a different configuration or to add more
+audio beyond 120 ms, you must clear the repacketizer state by calling
+opus_repacketizer_init().
+If a packet is too large to add to the current repacketizer state, no part
+of it is added, even if it contains multiple frames, some of which might
+fit.
+If you wish to be able to add parts of such packets, you should first use
+another repacketizer to split the packet into pieces and add them
+individually.
+@see opus_repacketizer_out_range
+@see opus_repacketizer_out
+@see opus_repacketizer_init
+@param rp <tt>OpusRepacketizer*</tt>: The repacketizer state to which to
+add the packet.
+@param[in] data <tt>const unsigned char*</tt>: The packet data.
+The application must ensure
+this pointer remains valid
+until the next call to
+opus_repacketizer_init() or
+opus_repacketizer_destroy().
+@param len <tt>opus_int32</tt>: The number of bytes in the packet data.
+@returns An error code indicating whether or not the operation succeeded.
+@retval #OPUS_OK The packet’s contents have been added to the repacketizer
+state.
+@retval #OPUS_INVALID_PACKET The packet did not have a valid TOC sequence,
+the packet’s TOC sequence was not compatible
+with previously submitted packets (because
+the coding mode, audio bandwidth, frame size,
+or channel count did not match), or adding
+this packet would increase the total amount of
+audio stored in the repacketizer state to more
+than 120 ms.</p>
+</div></details></section></div></main></body></html>
