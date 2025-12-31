@@ -1,9 +1,17 @@
 // Copyright (c) 2023 d-k-bo
 // SPDX-License-Identifier: BSD-3-Clause
 
+use std::ffi::c_int;
 use std::{borrow::Borrow, ffi::CString, os::unix::prelude::OsStrExt, path::Path};
 
 use crate::{error::CheckResult, Comments, Result};
+
+// Encoder CTLs
+const OPUS_SET_BITRATE: c_int = 4002; // in i32
+
+// Bitrate
+const OPUS_AUTO: c_int = -1000;
+const OPUS_BITRATE_MAX: c_int = -1;
 
 /// Encoder for creating Ogg Opus files.
 ///
@@ -73,6 +81,29 @@ impl Encoder {
         assert!(!ptr.is_null());
 
         Ok(Self { ptr, channels })
+    }
+}
+
+/// Possible bitrates.
+#[derive(Debug, Copy, Clone, Eq, PartialEq, Hash)]
+pub enum Bitrate {
+    /// Explicit bitrate choice (in bits/second).
+    Bits(i32),
+    /// Maximum bitrate allowed (up to maximum number of bytes for the packet).
+    Max,
+    /// Default bitrate decided by the encoder (not recommended).
+    Auto,
+}
+
+impl Encoder {
+    /// Set the encoder bitrate.
+    pub fn set_bitrate(&mut self, bitrate: Bitrate) -> Result<()> {
+        let bitrate: i32 = match bitrate {
+            Bitrate::Auto => OPUS_AUTO,
+            Bitrate::Max => OPUS_BITRATE_MAX,
+            Bitrate::Bits(b) => b,
+        };
+        unsafe { crate::ffi::ope_encoder_ctl(self.ptr, OPUS_SET_BITRATE, bitrate) }.check_result()
     }
 }
 

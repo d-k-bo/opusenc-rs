@@ -28,7 +28,7 @@
 //!     2,
 //!     MappingFamily::MonoStereo,
 //! )?;
-//!     
+//!
 //! encoder.write(&audio_data)?;
 //! encoder.drain()?;
 //!
@@ -48,7 +48,7 @@ use std::ffi::CStr;
 
 pub use crate::{
     comments::{Comments, PicardTag, PictureType, RecommendedTag},
-    encoder::{Encoder, MappingFamily},
+    encoder::{Encoder, MappingFamily, Bitrate},
     error::{Error, OpusencError, Result},
 };
 pub use opusenc_sys as ffi;
