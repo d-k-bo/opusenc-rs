@@ -41,3 +41,8 @@ file = "CHANGELOG.md"
 search = "\\[Unreleased\\]: "
 replace = """[Unreleased]: https://github.com/d-k-bo/opusenc-rs/compare/{{tag_name}}...HEAD\n[{{version}}]: """
 exactly = 1
+
+# see https://stackoverflow.com/a/61417700/14750360
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]

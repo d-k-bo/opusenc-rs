@@ -44,6 +44,8 @@
 //! They are intended to be used via C macros that don't work with Rust.
 //! Make sure to check if the methods you use match their intended behaviour.
 
+#![cfg_attr(docsrs, feature(doc_cfg))]
+
 use std::ffi::CStr;
 
 pub use crate::{
